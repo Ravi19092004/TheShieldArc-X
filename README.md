@@ -1,35 +1,39 @@
-# 🚀 My-Project
+# 🛡️ TheShieldArc-X
 
-A comprehensive **cybersecurity platform** featuring URL scanning, phishing detection, and user management. 
+A comprehensive **AI-powered cybersecurity platform** featuring URL scanning, phishing detection, privacy tools, and real-time threat monitoring.
 
 ## ✨ Features
 
-- **🔗 URL Scanning**: Advanced URL analysis and threat detection  
-- **🎣 Phishing Detection**: ML-powered phishing detection using XGBoost  
-- **🔐 User Authentication**: Secure registration and login with NextAuth.js  
-- **📊 Dashboard**: Real-time monitoring and analytics  
-- **🖥️ Browser Extension**: Chrome extension for on-the-fly URL scanning  
-- **🌐 API Services**: RESTful API for integrations  
+- **🔗 URL Scanning** - Advanced URL analysis and threat detection in real-time
+- **🎣 Phishing Detection** - ML-powered phishing detection using XGBoost
+- **🔐 User Authentication** - Secure registration and login with NextAuth.js
+- **📊 Dashboard** - Real-time monitoring, analytics, and security scores
+- **🖥️ Browser Extension** - Chrome extension for on-the-fly URL scanning
+- **🌐 API Services** - RESTful API for integrations
+- **🔒 Privacy Locker** - Secure data protection tools
+- **👨‍👩‍👧 Parental Controls** - Family safety monitoring
+- **📱 Device Security** - IoT device security integration
+- **🎮 Gamification** - Security awareness through rewards
 
 ---
 
 ## 🛠️ Tech Stack
 
 ### Frontend (Web)
-- **Framework**: Next.js 14 with App Router  
-- **Styling**: Tailwind CSS  
-- **Authentication**: NextAuth.js  
-- **Database**: Prisma + PostgreSQL  
-- **Charts**: Recharts  
+- **Framework**: Next.js 14 with App Router
+- **Styling**: Tailwind CSS
+- **Authentication**: NextAuth.js
+- **Database**: Prisma + PostgreSQL (Neon)
+- **Charts**: Recharts
 
 ### Backend (API)
-- **Framework**: Flask  
-- **ML Model**: XGBoost for phishing detection  
-- **Serialization**: Pickle for model storage  
+- **Framework**: Flask (FastAPI-ready)
+- **ML Model**: XGBoost for phishing detection
+- **Serialization**: Pickle for model storage
 
 ### Browser Extension
-- **Platform**: Chrome Extension API  
-- **UI**: React + TypeScript  
+- **Platform**: Chrome Extension API
+- **UI**: React + TypeScript
 
 ---
 
@@ -53,22 +57,23 @@ packages/
     └── background.js
 ```
 
-## 🏁 Getting Started
+---
+
+## 🚀 Getting Started
 
 ### Prerequisites
-- Node.js 18+  
-- Python 3.8+  
-- PostgreSQL  
-- Git  
+
+- Node.js 18+
+- Python 3.8+
+- PostgreSQL
+- Git
 
 ### Installation
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/My-Project.git
-   cd My-Project
-   git clone https://github.com/yourusername/My-Project.git
-   cd My-Project
+   git clone https://github.com/Ravi19092004/TheShieldArc-X.git
+   cd TheShieldArc-X
    ```
 
 2. **Install dependencies**
@@ -94,7 +99,7 @@ packages/
 4. **Configure environment variables**
    Create `.env.local` in `packages/web` with:
    ```
-   DATABASE_URL="postgresql://username:password@localhost:5432/myproject"
+   DATABASE_URL="postgresql://username:password@localhost:5432/datashield"
    NEXTAUTH_SECRET="your-secret-key"
    NEXTAUTH_URL="http://localhost:3000"
    ```
@@ -115,27 +120,31 @@ packages/
    # Click "Load unpacked" and select packages/extension
    ```
 
-## 🔌API Endpoints
+---
 
-### 🔐Authentication
+## 🔌 API Endpoints
+
+### 🔐 Authentication
 - `POST /api/auth/[...nextauth]` - NextAuth.js authentication
 
-### 👀Scanning
+### 👀 Scanning
 - `POST /api/predict` - Predict phishing probability
 - `POST /api/get-scan` - Get scan results
 - `POST /api/save-scan` - Save scan results
 
-### 👤User Management
+### 👤 User Management
 - `POST /api/user/update-profile` - Update user profile
 - `POST /api/user/accept-terms` - Accept terms of service
 
-### Dashboard
+### 📊 Dashboard
 - `GET /api/dashboard-stats` - Get dashboard statistics
 - `GET /api/scan-history` - Get scan history
 - `DELETE /api/scan-history/delete-one` - Delete single scan
 - `DELETE /api/scan-history/clear-all` - Clear all scans
 
-## 🤖Machine Learning Model
+---
+
+## 🤖 Machine Learning Model
 
 The phishing detection model uses:
 - **Algorithm**: XGBoost Classifier
@@ -143,7 +152,9 @@ The phishing detection model uses:
 - **Training Data**: Balanced dataset of phishing and legitimate URLs
 - **Accuracy**: ~95% on test set
 
-## 🤝Contributing
+---
+
+## 🤝 Contributing
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
@@ -151,31 +162,48 @@ The phishing detection model uses:
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## 📜License
+---
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+## 📜 License
 
-## 🔒Security
+This project is licensed under the MIT License.
+
+---
+
+## 🔒 Security Features
 
 This project implements various security measures:
 - Input validation and sanitization
 - Rate limiting
-- Secure authentication
+- Secure authentication with NextAuth.js
 - HTTPS enforcement
 - Regular security updates
+- Two-factor authentication support
 
-## 💬Support
+---
 
-For support, email rgharabbidi@gmail.com
+## 💬 Support
 
-## Roadmap
+For support, email: **rgharabbidi@gmail.com**
+
+---
+
+## 🗺️ Roadmap
 
 - [ ] Mobile app development
 - [ ] Advanced threat intelligence
 - [ ] Integration with SIEM systems
 - [ ] Multi-language support
 - [ ] API rate limiting enhancements
+- [ ] Real-time threat feeds integration
 
- 
+---
 
+<div align="center">
+
+**Built with ❤️ by Ravi & Aryan**
+
+*Protecting the digital world, one URL at a time.*
+
+</div>
 
