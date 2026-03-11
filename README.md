@@ -201,7 +201,7 @@ For support, email: **rgharabbidi@gmail.com**
 
 <div align="center">
 
-**Built with ❤️ by Ravi & Aryan**
+**Built with ❤️ by Ravi**
 
 *Protecting the digital world, one URL at a time.*
 
