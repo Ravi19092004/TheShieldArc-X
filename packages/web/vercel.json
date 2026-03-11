@@ -1,0 +1,8 @@
+{
+  "env": {
+    "DATABASE_URL": "@database_url",
+    "NEXTAUTH_SECRET": "@nextauth_secret",
+    "NEXTAUTH_URL": "@nextauth_url",
+    "FASTAPI_URL": "@fastapi_url"
+  }
+}

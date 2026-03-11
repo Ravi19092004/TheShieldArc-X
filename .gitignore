@@ -1,0 +1,89 @@
+# ======================
+# Node / Frontend
+# ======================
+node_modules/
+dist/
+build/
+.next/
+out/
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ======================
+# Environment variables
+# ======================
+.env
+.env.*
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# ======================
+# IDE / OS
+# ======================
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# ======================
+# Logs / Temp
+# ======================
+logs/
+*.log
+*.tmp
+*.temp
+
+# ======================
+# Python / ML
+# ======================
+__pycache__/
+*.py[cod]
+*.so
+.Python
+
+venv/
+.venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# ML models (DO NOT TRACK)
+*.pkl
+*.h5
+*.pt
+*.onnx
+
+# ======================
+# Data (DO NOT TRACK)
+# ======================
+data/
+datasets/
+*.csv
+*.parquet
+
+# ======================
+# Database
+# ======================
+*.db
+*.sqlite
+*.sqlite3
+
+# ======================
+# Prisma
+# ======================
+node_modules/.prisma/
+
+# ======================
+# Browser Extension
+# ======================
+packages/extension/build/
+packages/extension/dist/
+packages/web/public/extension.zip
+

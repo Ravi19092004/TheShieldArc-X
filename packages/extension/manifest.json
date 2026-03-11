@@ -1,0 +1,61 @@
+{
+  "manifest_version": 3,
+  "name": "DataShield.AI – Phishing & Threat Detector",
+  "description": "AI-powered extension that detects phishing and unsafe websites in real-time using ML predictions.",
+  "version": "3.0.0",
+  "icons": {
+    "16": "ShieldLogo.jpg",
+    "48": "ShieldLogo.jpg",
+    "128": "ShieldLogo.jpg"
+  },
+  "permissions": [
+    "storage",
+    "tabs",
+    "scripting",
+    "activeTab",
+    "alarms",
+    "webNavigation"
+  ],
+  "host_permissions": [
+    "http://localhost:8000/*",
+    "https://*/",
+    "http://*/",
+    "https://ip-api.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["content.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "ShieldLogo.jpg",
+      "48": "ShieldLogo.jpg",
+      "128": "ShieldLogo.jpg"
+    }
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "ShieldLogo.jpg",
+        "DataShield.Ai-removebg-preview.png",
+        "terms.html",
+        "popup.html"
+      ],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self';"
+  },
+
+  "author": "Ravishankar Gharabidi",
+  "homepage_url": "http://localhost:3000",
+  "offline_enabled": true
+}

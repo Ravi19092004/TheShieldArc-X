@@ -1,0 +1,241 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                    String                 @id @default(cuid())
+  name                  String?
+  email                 String?                @unique
+  password              String?
+  emailVerified         DateTime?
+  image                 String?
+  twoFactorEnabled      Boolean                @default(false)
+  twoFactorSecret       String?
+  role                  UserRole               @default(USER)
+  termsAccepted         Boolean                @default(false)
+  lastLoginIp           String?
+  lastLoginDevice       String?
+  createdAt             DateTime               @default(now())
+  updatedAt             DateTime               @updatedAt
+  accounts              Account[]              @relation("UserAccounts")
+  achievements          Achievement[]          @relation("UserAchievements")
+  receivedMessages      Message[]              @relation("MessageReceiver")
+  sentMessages          Message[]              @relation("MessageSender")
+  parentalControl       ParentalControl?       @relation("UserParentalControl")
+  privacyLockerItems    PrivacyLockerItem[]    @relation("UserPrivacyLockerItems")
+  scans                 Scan[]                 @relation("UserScans")
+  scheduledCheckups     ScheduledCheckup[]     @relation("UserScheduledCheckups")
+  securityDevices       SecurityDevice[]       @relation("UserSecurityDevices")
+  threatReports         ThreatReport[]         @relation("UserThreatReports")
+  twoFactorConfirmation TwoFactorConfirmation? @relation("UserTwoFactorConfirmation")
+}
+
+model Account {
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  user              User     @relation("UserAccounts", fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([provider, providerAccountId])
+}
+
+model VerificationToken {
+  id        String   @id @default(cuid())
+  email     String
+  token     String   @unique
+  expiresAt DateTime
+
+  @@unique([email, token])
+}
+
+model PasswordResetToken {
+  id        String   @id @default(cuid())
+  email     String
+  token     String   @unique
+  expiresAt DateTime
+
+  @@unique([email, token])
+}
+
+model TwoFactorConfirmation {
+  id        String    @id @default(cuid())
+  userId    String    @unique
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  code      String?
+  expiresAt DateTime?
+  user      User      @relation("UserTwoFactorConfirmation", fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Scan {
+  id                String   @id @default(cuid())
+  url               String
+  redirectedUrl     String?
+  status            String
+  safe_percentage   Float
+  unsafe_percentage Float
+  ip_address        String?
+  location          String?
+  asn               String?
+  country_code      String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  userId            String?
+  user              User?    @relation("UserScans", fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Achievement {
+  id          String   @id @default(cuid())
+  userId      String
+  type        String
+  title       String
+  description String
+  points      Int      @default(0)
+  earnedAt    DateTime @default(now())
+  user        User     @relation("UserAchievements", fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model ThreatReport {
+  id          String    @id @default(cuid())
+  userId      String
+  url         String
+  title       String
+  description String
+  severity    String    @default("medium")
+  category    String    @default("phishing")
+  status      String    @default("pending")
+  verifiedAt  DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  user        User      @relation("UserThreatReports", fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([status])
+}
+
+model ThreatFeed {
+  id          String   @id @default(cuid())
+  source      String
+  title       String
+  url         String   @unique
+  description String?
+  severity    String
+  category    String
+  publishedAt DateTime
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+
+  @@index([publishedAt])
+  @@index([category])
+}
+
+model ParentalControl {
+  id               String   @id @default(cuid())
+  userId           String   @unique
+  enabled          Boolean  @default(false)
+  blocklist        String[]
+  timeLimits       Json?
+  safeBrowsing     Boolean  @default(true)
+  contentFiltering Boolean  @default(false)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  user             User     @relation("UserParentalControl", fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model PrivacyScore {
+  id            String    @id @default(cuid())
+  url           String    @unique
+  domain        String
+  score         Int
+  trackers      String[]
+  cookies       String[]
+  lastScannedAt DateTime
+  nextScanAt    DateTime?
+
+  @@index([domain])
+}
+
+model ScheduledCheckup {
+  id          String    @id @default(cuid())
+  userId      String
+  name        String
+  description String?
+  frequency   String
+  nextRunAt   DateTime
+  lastRunAt   DateTime?
+  isActive    Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  user        User      @relation("UserScheduledCheckups", fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([nextRunAt])
+}
+
+model SecurityDevice {
+  id         String    @id @default(cuid())
+  userId     String
+  name       String
+  type       String
+  deviceId   String    @unique
+  secret     String?
+  isActive   Boolean   @default(true)
+  lastUsedAt DateTime?
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  user       User      @relation("UserSecurityDevices", fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([type])
+}
+
+model Message {
+  id         String   @id @default(cuid())
+  senderId   String
+  receiverId String
+  content    String
+  iv         String
+  timestamp  DateTime @default(now())
+  isRead     Boolean  @default(false)
+  receiver   User     @relation("MessageReceiver", fields: [receiverId], references: [id], onDelete: Cascade)
+  sender     User     @relation("MessageSender", fields: [senderId], references: [id], onDelete: Cascade)
+
+  @@index([senderId])
+  @@index([receiverId])
+}
+
+model PrivacyLockerItem {
+  id               String   @id @default(cuid())
+  userId           String
+  title            String
+  type             String
+  encryptedContent String
+  iv               String
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  user             User     @relation("UserPrivacyLockerItems", fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+enum UserRole {
+  USER
+  ADMIN
+}

@@ -1,0 +1,15 @@
+{
+  "name": "phishing-detector-extension-main",
+  "version": "1.0.0",
+  "description": "This extension works on Chrome, Firefox, and Edge. It captures the URL of every visited website and is ready to integrate a local ML model to classify sites as phishing or safe (no API calls).",
+  "main": "background.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ws": "^8.14.2"
+  }
+}

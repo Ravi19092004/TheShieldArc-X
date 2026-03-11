@@ -1,0 +1,289 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+    --card: 222 47% 13%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222 47% 13%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 189 100% 50%;
+    --primary-foreground: 222 47% 11%;
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217 33% 20%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 271 81% 56%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+    --safe: 142 76% 36%;
+    --safe-foreground: 210 40% 98%;
+    --warning: 45 93% 47%;
+    --warning-foreground: 222 47% 11%;
+    --border: 217 33% 25%;
+    --input: 217 33% 25%;
+    --ring: 189 100% 50%;
+    --radius: 0.75rem;
+    --gradient-cyber: linear-gradient(135deg, hsl(189 100% 50%), hsl(271 81% 56%));
+    --gradient-safe: linear-gradient(135deg, hsl(142 76% 36%) 0%, hsl(160 84% 39%) 100%);
+    --gradient-warning: linear-gradient(135deg, hsl(45 93% 47%), hsl(38 92% 50%));
+    --gradient-danger: linear-gradient(135deg, hsl(0 84% 60%), hsl(350 89% 60%));
+    --glow-cyan: 0 0 20px hsl(189 100% 50% / 0.3);
+    --glow-purple: 0 0 20px hsl(271 81% 56% / 0.3);
+    --font-scale: 1;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    font-size: calc(16px * var(--font-scale));
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  /* Responsive font scaling for headings */
+  h1 {
+    font-size: calc(2.5rem * var(--font-scale));
+    line-height: 1.1;
+  }
+
+  h2 {
+    font-size: calc(2rem * var(--font-scale));
+    line-height: 1.2;
+  }
+
+  h3 {
+    font-size: calc(1.75rem * var(--font-scale));
+    line-height: 1.25;
+  }
+
+  h4 {
+    font-size: calc(1.5rem * var(--font-scale));
+    line-height: 1.3;
+  }
+
+  h5 {
+    font-size: calc(1.25rem * var(--font-scale));
+    line-height: 1.4;
+  }
+
+  h6 {
+    font-size: calc(1.125rem * var(--font-scale));
+    line-height: 1.45;
+  }
+
+  /* Responsive font scaling for paragraphs and text */
+  p {
+    font-size: calc(1rem * var(--font-scale));
+    line-height: 1.6;
+  }
+
+  /* Button text scaling */
+  button {
+    font-size: calc(0.875rem * var(--font-scale));
+  }
+
+  /* Input text scaling */
+  input, textarea, select {
+    font-size: calc(0.875rem * var(--font-scale));
+  }
+
+  /* Small text scaling */
+  small {
+    font-size: calc(0.75rem * var(--font-scale));
+  }
+
+  /* Large text scaling */
+  .text-lg {
+    font-size: calc(1.125rem * var(--font-scale)) !important;
+  }
+
+  .text-xl {
+    font-size: calc(1.25rem * var(--font-scale)) !important;
+  }
+
+  .text-2xl {
+    font-size: calc(1.5rem * var(--font-scale)) !important;
+  }
+
+  .text-3xl {
+    font-size: calc(1.875rem * var(--font-scale)) !important;
+  }
+
+  .text-4xl {
+    font-size: calc(2.25rem * var(--font-scale)) !important;
+  }
+
+  .text-5xl {
+    font-size: calc(3rem * var(--font-scale)) !important;
+  }
+
+  .text-6xl {
+    font-size: calc(3.75rem * var(--font-scale)) !important;
+  }
+
+  .text-7xl {
+    font-size: calc(4.5rem * var(--font-scale)) !important;
+  }
+
+  .text-8xl {
+    font-size: calc(6rem * var(--font-scale)) !important;
+  }
+
+  .text-9xl {
+    font-size: calc(8rem * var(--font-scale)) !important;
+  }
+
+  /* Header-specific scaling */
+  header {
+    font-size: calc(1rem * var(--font-scale));
+  }
+
+  header * {
+    font-size: inherit;
+  }
+
+  /* Navigation component specific scaling */
+  header nav,
+  header .flex.items-center,
+  header button,
+  header p,
+  header span,
+  header div {
+    font-size: calc(1rem * var(--font-scale));
+  }
+
+  /* Ensure navigation text scales properly */
+  header .text-sm {
+    font-size: calc(0.875rem * var(--font-scale)) !important;
+  }
+
+  header .text-base {
+    font-size: calc(1rem * var(--font-scale)) !important;
+  }
+
+  /* Dropdown menu scaling */
+  [role="menu"],
+  [role="menuitem"] {
+    font-size: calc(0.875rem * var(--font-scale));
+  }
+
+  /* Sheet/Sidebar scaling for mobile menu */
+  [data-radix-portal] * {
+    font-size: calc(0.875rem * var(--font-scale));
+  }
+
+  /* Section header scaling for landing page */
+  section h2 {
+    font-size: calc(2.25rem * var(--font-scale));
+  }
+
+  section h3 {
+    font-size: calc(1.875rem * var(--font-scale));
+  }
+
+  section h4 {
+    font-size: calc(1.5rem * var(--font-scale));
+  }
+
+  /* Specific overrides for landing page sections */
+  #features h2,
+  #how-it-works h2,
+  #statistics h2,
+  #pricing h2,
+  #demo h2,
+  #testimonials h2,
+  #team h2,
+  #faq h2,
+  #contact h2,
+  #blog h2,
+  #installation h2 {
+    font-size: calc(2.25rem * var(--font-scale)) !important;
+  }
+
+  /* Responsive breakpoints for section headers */
+  @media (min-width: 768px) {
+    section h2 {
+      font-size: calc(3.75rem * var(--font-scale));
+    }
+
+    #features h2,
+    #how-it-works h2,
+    #statistics h2,
+    #pricing h2,
+    #demo h2,
+    #testimonials h2,
+    #team h2,
+    #faq h2,
+    #contact h2,
+    #blog h2,
+    #installation h2 {
+      font-size: calc(3.75rem * var(--font-scale)) !important;
+    }
+  }
+
+  /* Paragraph text in sections */
+  section p {
+    font-size: calc(1rem * var(--font-scale));
+  }
+
+  section .text-xl {
+    font-size: calc(1.25rem * var(--font-scale)) !important;
+  }
+
+  section .text-lg {
+    font-size: calc(1.125rem * var(--font-scale)) !important;
+  }
+
+  /* Card content scaling */
+  section .card-title,
+  section .card-description {
+    font-size: calc(1rem * var(--font-scale));
+  }
+
+  /* Button text in sections */
+  section button {
+    font-size: calc(0.875rem * var(--font-scale));
+  }
+
+  /* Badge text scaling */
+  section .inline-flex span {
+    font-size: calc(0.875rem * var(--font-scale));
+  }
+
+  /* Smooth transitions for font size changes */
+  * {
+    transition: font-size 0.3s ease-in-out;
+  }
+
+  /* Ensure header elements maintain proper scaling */
+  header *,
+  nav *,
+  .dropdown-menu *,
+  .sheet-content * {
+    transition: font-size 0.3s ease-in-out;
+  }
+
+  /* Smooth transitions for section elements */
+  section *,
+  section h2,
+  section h3,
+  section h4,
+  section p,
+  section button,
+  section span {
+    transition: font-size 0.3s ease-in-out;
+  }
+}

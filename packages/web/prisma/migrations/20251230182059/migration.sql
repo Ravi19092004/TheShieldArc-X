@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Scan" ALTER COLUMN "userId" DROP NOT NULL;
